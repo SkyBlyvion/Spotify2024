@@ -1,5 +1,7 @@
 # Launch Project
 
+- npm i
+
 - npm run dev
 
 # Libs
