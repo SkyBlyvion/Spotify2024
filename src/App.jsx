@@ -1,11 +1,10 @@
 import React from 'react'
+import Home from './screens/Home'
 
 const App = () => {
   return (
     
-    <h1 className="text-3xl font-bold underline text-green">
-    Hello world!
-    </h1>
+    <Home />
   )
 }
 
