@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { dataAlbumNav, imgLogo, styleIcon } from '../constants/appConstant'
+import { dataAlbumNav, imgLogo, styleIcon, dataUserNav } from '../constants/appConstant'
 import { NavLink } from 'react-router-dom'
 import { RiCloseLine } from 'react-icons/ri'
 import { HiOutlineMenu } from 'react-icons/hi'
@@ -49,7 +49,7 @@ const Sidebar = () => {
     <>
         {/* navbar pour la vue au dessus de 768px */}
         <div className='hidden md:flex flex-col w-[240px] py-10 px-4 bg-black'>
-            <img srx={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
+            <img src={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
                 <NavLinks/>
         </div>
         {/* gestion des icones pour ouvrir/fermer le menu en petti ecran */}
