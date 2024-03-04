@@ -1,4 +1,7 @@
 import { imageUrl } from "./apiConstant";
+import { AiOutlineAppstoreAdd, AiOutlineHome, AiOutlineSearch } from "react-icons/ai";
+import { BiLibrary } from "react-icons/bi";
+import { MdFavoriteBorder } from "react-icons/md";
 
 // on construit un premier tableau pour notre navbar
 //1 pour la gestion des albums

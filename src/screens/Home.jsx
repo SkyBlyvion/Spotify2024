@@ -24,6 +24,7 @@ const Home = () => {
 
   return (
     loading ? <PageLoader/>:
+    
 
 
     <div>Home</div>
