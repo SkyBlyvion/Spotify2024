@@ -1,9 +1,12 @@
-const { configureStore } = require("@reduxjs/toolkit");
+import { configureStore } from "@reduxjs/toolkit";
+import albumReducer from "./album/albumSlice"
 
 // Rayon de l'application (Store)
 const store = configureStore({
+    // ajouter les reducers ici
     reducer: {
-        //TODO: ajouter les futurs reducers ici
+        albums: albumReducer,
+
         
 
     }

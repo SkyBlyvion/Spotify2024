@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { apiUrl } from "../../constants/apiConstant";
 // on crée notre premier reducer
 const albumSlice = createSlice({
     // on lui donne un nom
@@ -26,7 +28,6 @@ export const fetchAlbums = () => async dispatch => {
     try {
         // on passe le state loading a true pour signifier qu'on attend une réponse
         dispatch(setLoading(true));
-
         const response = await axios.get(`${apiUrl}/alba?page=1&isActive=true`);
         // on set les données dans le state albums
         dispatch(setAlbums(response.data));
