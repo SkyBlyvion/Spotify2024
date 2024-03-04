@@ -6,7 +6,7 @@ const albumSlice = createSlice({
     // on lui donne un nom
     name: 'albums',
     // on lui donne un state initial( valeurs par defaut)
-    initalState: {
+    initialState: {
         albums: [], // on init un tableau vide pour les albums
         loading: false, // on init le state loading a false pour pouvoir gerer lattente des requetes asyncrones
     },
