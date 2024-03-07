@@ -1,38 +1,30 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import CustomInput from '../../components/CustomInput'
 
 const Register = () => {
 
-  const [ nickname, setNickname ] = useState('')
-  const [ email, setEmail ] = useState('')
-  const [ password, setPassword ] = useState('')
-  const handleSubmit = () => {}
+  const [ nickname, setNickname ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ isLoading, setIsLoading ] = useState(false);
+
+  const handleSubmit = (event) => { 
+    event.preventDefault() // empêche le fonctionnement par defaut du formulaire
+    console.log({nickname, email, password});
+  }
 
   return (
     <div className='flex flex-1 flex-col h-screen justify-start items-center bg-black'>
       <h2 className='text-white font-bold text-xl py-5'>Enregistrez votre compte</h2>
       <form onSubmit={handleSubmit} className='max-w-md mx-auto'>
         {/* input pour le nickname */}
-        <div className='mb-3'>
-          <label className='block text-white font-bold mb-2' htmlFor="nickname">Votre Pseudo</label>
-          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline' 
-          type="text" value={nickname} onChange={(event) => setNickname(event.target.value)}
-          />
-        </div>
+        <CustomInput state={nickname} label="Votre Pseudo" type="text" callable={(event) => setNickname(event.target.value)}/>
         {/* input pour l'email */}
-        <div className='mb-3'>
-          <label className='block text-white font-bold mb-2' htmlFor="email">Votre Email</label>
-          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline' 
-          type="email" value={email} onChange={(event) => setEmail(event.target.value)}
-          />
-        </div>
-         {/* input pour password */}
-         <div className='mb-3'>
-          <label className='block text-white font-bold mb-2' htmlFor="password">Votre Mot de Passe</label>
-          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline' 
-          type="password" value={password} onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
+        <CustomInput state={email} label="Votre Email" type="email" callable={(event) => setEmail(event.target.value)}/>
+        {/* input pour password */}
+        <CustomInput state={password} label="Votre Password" type="password" callable={(event) => setPassword(event.target.value)}/>
+
         <p className='text-white'>Vous avez déja un compte ?<Link to='/' className='text-white font-bold hover:text-green'> Se connecter</Link></p>
           <div className='flex items-center justify-center pt-5'>
             <button type='submit' className='bg-green hover:bg-green_top text-white font-bold py-2 px-4 rounded'>
