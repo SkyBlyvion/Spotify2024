@@ -4,6 +4,7 @@ import ButtonLoader from '../../components/loader/ButtonLoader';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { apiRoot } from '../../constants/apiConstant';
 
 const Login = () => {
 
@@ -18,7 +19,7 @@ const Login = () => {
 
   const handleSubmit = (event) => { 
     event.preventDefault() // empêche le fonctionnement par defaut du formulaire
-    console.log({nickname, email, password});
+    console.log({ email, password});
     setIsLoading(true);
     // route de l'api; class RegistrationController
     axios.post(`${apiRoot}/login`, {

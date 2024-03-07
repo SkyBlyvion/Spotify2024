@@ -4,6 +4,7 @@ import CustomInput from '../../components/CustomInput'
 import axios from 'axios';
 import { apiRoot } from '../../constants/apiConstant';
 import { useAuthContext } from '../../contexts/AuthContext';
+import ButtonLoader from '../../components/loader/ButtonLoader';
 
 const Register = () => {
 

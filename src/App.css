@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* active navigation bar */
+.active {
+    @apply text-green
+}
+
+.active svg {
+    @apply text-green
+}
+
+/* scrolbar */ 
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-green_top;
+    border-radius: 5px;
+}
