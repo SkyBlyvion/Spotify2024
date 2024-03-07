@@ -25,7 +25,7 @@ const OfflineRouter = createBrowserRouter([
                 element: <Login />,
             },
             {
-                path: "/search",
+                path: "/register",
                 element: <Register />,
             },
         ]
