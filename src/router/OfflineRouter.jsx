@@ -6,12 +6,15 @@ import Search from "../screens/OnlineScreens/Search";
 import Library from "../screens/OnlineScreens/Library";
 import Playlist from "../screens/OnlineScreens/Playlist";
 import Wishlist from "../screens/OnlineScreens/Wishlist";
+import HomeOffline from "../screens/OfflineScreens/HomeOffline";
+import Login from "../screens/OfflineScreens/Login";
+import Register from "../screens/OfflineScreens/Register";
 
-const OnlineRouter = createBrowserRouter([
+const OfflineRouter = createBrowserRouter([
     {
         element:(
          <>
-            <App />
+            <HomeOffline />
          </>
         ),
         errorElement: <ErrorPage />,
@@ -19,26 +22,14 @@ const OnlineRouter = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home />,
+                element: <Login />,
             },
             {
                 path: "/search",
-                element: <Search />,
-            },
-            {
-                path: "/library",
-                element: <Library />,
-            },
-            {
-                path: "/add-playlist",
-                element: <Playlist />,
-            },
-            {
-                path: "/wishlist",
-                element: <Wishlist />,
+                element: <Register />,
             },
         ]
     }
 ])
 
-export default OnlineRouter
+export default OfflineRouter
