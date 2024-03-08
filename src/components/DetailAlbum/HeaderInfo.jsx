@@ -9,7 +9,7 @@ const HeaderInfo = ({dataAlbum}) => {
     : `${albumUrl}/${dataAlbum?.imagePath}`
 
     // formater la date, recupere que l'année
-    const releaseDate = new Date(dataAlbum?.releaseDate).getFullYear()
+    const releaseDate = new Date(dataAlbum?.releaseDate).getFullYear() ?? 'Date Inconnue'
     
     // on definit le nombre de titres par albums
     // si il y a plusieurs titres on affiche le nombre 
@@ -47,15 +47,16 @@ const HeaderInfo = ({dataAlbum}) => {
 
 
   return (
+    dataAlbum &&
     <div className='flex items-center'>
         <img src={imgPath} alt={dataAlbum?.artist?.name ?? 'photoArtiste'} className='w-10 h-10 rounded-full'/>
-        <p className='font-bold text-base p-1'>{dataAlbum?.artist?.name}</p>
+        <p className='font-bold text-base p-1'>{dataAlbum?.artist?.name ?? 'artiste inconnu'}</p>
         <Dot/>
         <p className='font-bold text-base p-1'>{releaseDate}</p>
         <Dot/>
         <p className='font-bold text-base p-1'>{nbTitle}</p>
         <Dot/>
-        <p className='font-bold text-base p-1'>{durationAlbum()}</p>
+        <p className='font-bold text-base p-1'>{dataAlbum?.songs.length > 0 ? durationAlbum() : 'Duree inconnue'}</p>
  
     </div>
 
