@@ -19,6 +19,7 @@ export default {
       },
       animation: {
         slideup: 'slideup 1s ease-in-out',
+        slideup1: 'slideup 500ms ease-in-out'
       },
       keyframes: {
         slideup: {

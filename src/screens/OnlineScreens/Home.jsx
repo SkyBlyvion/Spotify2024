@@ -9,6 +9,9 @@ const Home = () => {
   // on récupère le hook useDispatch de react-redux
   const dispatch = useDispatch()
 
+  //on doit recuperer les infos du sliceplayer
+  const {activeSong, isPlaying} = useSelector(state => state.player)
+
   //quand je monte home je veux recuperer la liste des albums
 
   useEffect(() => {
@@ -39,6 +42,14 @@ const Home = () => {
               key={index}
               // on passe data comme props de l'album
               data={data}
+              //songs: tableau de chansons
+              songs={data.songs}
+              // isPlaying pour saoir si une chanson est en cour de lecture
+              isPlaying={isPlaying}
+              // activeSong: chanson en cours de lecture
+              activeSong={activeSong}
+              // on va passer l'index de la chanson en cours de lecture
+              index={0}
 
             />
           )

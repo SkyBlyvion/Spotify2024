@@ -26,6 +26,8 @@ const playerSlice = createSlice({
             state.currentIndex = action.payload?.index;
             // stockage de l'etat du player
             state.isActive = true;
+       
+
         },
 
         setActiveAlbum: (state, action) => {

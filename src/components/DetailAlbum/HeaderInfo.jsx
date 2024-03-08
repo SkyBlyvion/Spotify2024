@@ -56,7 +56,7 @@ const HeaderInfo = ({dataAlbum}) => {
         <Dot/>
         <p className='font-bold text-base p-1'>{nbTitle}</p>
         <Dot/>
-        <p className='font-bold text-base p-1'>{dataAlbum?.songs.length > 0 ? durationAlbum() : 'Duree inconnue'}</p>
+        <p className='font-bold text-base p-1'>{dataAlbum?.songs?.length > 0 ? durationAlbum() : 'Duree inconnue'}</p>
  
     </div>
 

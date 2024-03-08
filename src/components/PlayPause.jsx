@@ -16,14 +16,14 @@ const PlayPause = ({
     // si vrai on affiche le bouton pause avec handlePause
     <BsPauseCircleFill 
         size= {size}
-        className='text-green shadow-md'
+        className='text-green_top shadow-md'
         onClick={handlePause}
     />
     :
     // si faux on affiche le bouton play avec handlePlay
     <BsPlayCircleFill 
         size= {size}
-        className='text-green shadow-md'
+        className='text-green_top shadow-md'
         onClick={handlePlay}
     />
   )
