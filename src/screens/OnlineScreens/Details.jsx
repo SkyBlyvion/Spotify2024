@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchAlbumsDetails } from '../../redux/album/albumSlice'
 import { selectAlbumsData } from '../../redux/album/albumSelector'
+import PageLoader from '../../components/loader/PageLoader'
+import DetailAlbum from '../../components/DetailAlbum'
 
 const Details = () => {
     const params = useParams();
@@ -14,12 +16,13 @@ const Details = () => {
        dispatch(fetchAlbumsDetails(id))
     }, [])
 
-    const {loading, albumDetails} = useSelector(selectAlbumsData)
-    console.log('albumDetails', albumDetails)
+    const {loading, albumDetails} = useSelector(selectAlbumsData);
+    console.log(albumDetails)
   return (
-    <>
-        <div>Details</div>
-    </>
+
+    loading ? <PageLoader/> : 
+    <DetailAlbum dataAlbum={albumDetails}/>
+        
   )
 }
 

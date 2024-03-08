@@ -9,7 +9,7 @@ const albumSlice = createSlice({
     initialState: {
         albums: [], // on init un tableau vide pour les albums
         loading: false, // on init le state loading a false pour pouvoir gerer lattente des requetes asyncrones
-        albumDetails: [],
+        albumDetails: {},
     },
     // methode qui permet de remplir les states (mise en rayon)
     reducers: {
@@ -48,7 +48,7 @@ export const fetchAlbumsDetails = (id) => async dispatch => {
     try {
         dispatch(setLoading(true));
         const response = await axios.get(`${apiUrl}/alba?page=1&isActive=true&id=${id}`);
-        dispatch(setAlbumDetails(response.data));
+        dispatch(setAlbumDetails(response.data['hydra:member'][0]));
         dispatch(setLoading(false));
         
     } catch (error) {
