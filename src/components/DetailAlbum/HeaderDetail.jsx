@@ -4,7 +4,7 @@ import HeaderInfo from './HeaderInfo'
 
 
 const HeaderDetail = ({dataAlbum}) => {
-    console.log('bbbbbbbbbbbbb',dataAlbum)
+
     // on recupere les données de l'album
     const imgPath = `${albumUrl}/${dataAlbum?.imagePath}`
   return (
