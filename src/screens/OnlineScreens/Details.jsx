@@ -17,7 +17,7 @@ const Details = () => {
     }, [])
 
     const {loading, albumDetails} = useSelector(selectAlbumsData);
-    console.log(albumDetails)
+    // console.log(albumDetails)
   return (
 
     loading ? <PageLoader/> : 
