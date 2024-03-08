@@ -21,11 +21,11 @@ const Home = () => {
   // on peut specifier le tableau qui nous interesse
   const dataAlbum = albums['hydra:member']
   // console.log('data albums', dataAlbum);
-  console.log('data albums', dataAlbum);
+  // console.log('data albums', dataAlbum);
 
   return (
     loading ? <PageLoader/>:
-    <div className='flex flex-col'>
+    <div className='flex flex-col p-4'>
       <h2 className='font-bold text-3xl text-white text-left mt-4 mb-10'>
         Tous les albums
       </h2>

@@ -9,6 +9,7 @@ const albumSlice = createSlice({
     initialState: {
         albums: [], // on init un tableau vide pour les albums
         loading: false, // on init le state loading a false pour pouvoir gerer lattente des requetes asyncrones
+        albumDetails: [],
     },
     // methode qui permet de remplir les states (mise en rayon)
     reducers: {
@@ -19,9 +20,12 @@ const albumSlice = createSlice({
         setLoading: (state, action)=>{
             state.loading = action.payload
         },
+        setAlbumDetails: (state, action)=>{
+            state.albumDetails = action.payload
+        }
     }
 });
-export const { setAlbums, setLoading } = albumSlice.actions;
+export const { setAlbums, setLoading, setAlbumDetails } = albumSlice.actions;
 
 // on crée la méthode qui permet de recuperer les données des albums de la bdd
 export const fetchAlbums = () => async dispatch => {
@@ -34,7 +38,24 @@ export const fetchAlbums = () => async dispatch => {
         // on repasse le state loading a false pour signifier qu'on a fini de recuperer les données
         dispatch(setLoading(false));
     } catch (error) {
-        console.log(error);
+        console.log(`Erreur sur fetch album: ${error}`);
+        dispatch(setLoading(false));
     }
-}
+};
+
+// on crée la méthode pour recupere les infos d'un album particulier
+export const fetchAlbumsDetails = (id) => async dispatch => {
+    try {
+        dispatch(setLoading(true));
+        const response = await axios.get(`${apiUrl}/alba?page=1&isActive=true&id=${id}`);
+        dispatch(setAlbumDetails(response.data));
+        dispatch(setLoading(false));
+        
+    } catch (error) {
+        console.log(`Erreur sur fetch albumDetail: ${error}`);
+        dispatch(setLoading(false));
+
+    }
+};
+
 export default albumSlice.reducer
