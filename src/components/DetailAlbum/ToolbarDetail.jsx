@@ -6,6 +6,7 @@ import PlayPause from '../PlayPause';
 
 const ToolbarDetail = ({dataAlbum}) => {
 
+  const data= dataAlbum
   const songs = dataAlbum?.songs;
   const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const ToolbarDetail = ({dataAlbum}) => {
         isPlaying={isPlaying}
         activeSong={activeSong}
         index={index}
-        data={dataAlbum}
+        data={data}
       />
     </div>
   )

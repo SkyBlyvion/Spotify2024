@@ -4,6 +4,8 @@ import { RiCloseLine } from 'react-icons/ri'
 import { HiOutlineMenu } from 'react-icons/hi'
 // les fichiers sonts importés depuis un dossier
 import NavLinks from './NavLinks'
+import { Link } from 'react-router-dom'
+
 
 // React functional component that renders the sidebar menu. It uses the useState hook to manage the state of mobileMenu,
 //which is used to control the visibility of the sidebar menu on smaller screens. The component renders two different navigation bars based on the screen size. 
@@ -15,9 +17,11 @@ const Sidebar = () => {
     <>
         {/* navbar pour la vue au dessus de 768px */}
         <div className='hidden md:flex flex-col w-[240px] py-10 px-4 bg-black'>
-            <img src={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
-                <NavLinks data={dataAlbumNav} marginTop={'mt-10'}/>
-                <NavLinks data={dataUserNav} marginTop={'mt-5'}/>
+            <Link to = '/'>
+                <img src={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
+                    <NavLinks data={dataAlbumNav} marginTop={'mt-10'}/>
+                    <NavLinks data={dataUserNav} marginTop={'mt-5'}/>
+            </Link>
         </div>
         {/* gestion des icones pour ouvrir/fermer le menu en petti ecran */}
         <div className='absolute md:hidden block top-6 right-3'>
