@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import albumReducer from "./album/albumSlice"
 import playerReducer from "./Player/PlayerSlice"
+import userReducer from "./user/userSlice"
 
 // Rayon de l'application (Store)
 const store = configureStore({
@@ -8,6 +9,7 @@ const store = configureStore({
     reducer: {
         albums: albumReducer,
         player: playerReducer,
+        user: userReducer,
     }
 })
 

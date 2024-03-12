@@ -8,6 +8,9 @@ import { AiFillHeart, AiFillInfoCircle, AiOutlineHeart, AiOutlineInfoCircle } fr
 import { Collapse } from 'react-collapse';
 import InfoCollapse from './InfoCollapse';
 import { USER_INFOS } from '../../constants/appConstant';
+import { fetchUserFavorite } from '../../redux/user/userSlice';
+import { selectUserData } from '../../redux/user/userSelector';
+import { fetchAddRemoveFavorite } from '../../services/userFavoritesService';
 
 const ToolbarDetail = ({dataAlbum}) => {
 
@@ -21,19 +24,32 @@ const ToolbarDetail = ({dataAlbum}) => {
   // on déclare nos states
   const [index, setIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch();
   // div plié ou déplié
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isInList, setIsInList] = useState(false);
   const [listArray, setListArray] = useState([]);
-
+  
   // on récupére les hooks
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(fetchUserFavorite(userId));
+    checkFavorites();
     setIsLoading(false);
-  })
+  }, [])
+
+  // check si l'album est dans la liste de favoris
+  const checkFavorites = () => {
+    if (userFavorite) {
+      const idArray = userFavorite.map((item)=>`/api/alba/${item.id}`);
+      setListArray([...new Set(idArray)])
+
+      if(idArray.includes(`/api/alba/${albumId}`)) setIsInList(true);
+    }
+  }
 
   // on recupére les données des slice 
   const {isPlaying, activeSong} = useSelector(state => state.player);
+  const { loading, userFavorite} = useSelector(selectUserData);
 
   // on va definir la methode pause
   const handlePauseClick = () => {
@@ -48,9 +64,24 @@ const ToolbarDetail = ({dataAlbum}) => {
   }
 
   // méthode pour gérer le favoris
-  const toggleFavorite = () => {
+  const toggleFavorite = async () => {
     setIsInList(!isInList);
-    //TODO: enregistrer ou supprimer dans la bdd le favoris
+    // créer une copie de list Array
+    let updatedListArray = [...listArray];
+
+    if(isInList){
+      // supprimer l'id de l'album dans le tableau
+      updatedListArray = listArray.filter((item) => item !== `/api/alba/${albumId}`);
+    }else{
+      // on ajoute l'id de l'album dans le tableau
+      updatedListArray.push(`/api/alba/${albumId}`);
+    }
+
+    // on appel le service pour mettre a jour la lsite des favoris dans la bdd
+    await fetchAddRemoveFavorite(updatedListArray, userId);
+
+    // on mets a jour le state
+    setListArray(updatedListArray);
   }
   
   //méthode pour ouvrir ou fermer le collapse

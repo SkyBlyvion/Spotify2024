@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setLoading } from "../album/albumSlice";
+import { apiUrl } from "../../constants/apiConstant";
 import axios from "axios";
 
 const userSlice = createSlice({
@@ -19,13 +19,14 @@ const userSlice = createSlice({
 })
 
 export const {setLoading, setUserFavorite} = userSlice.actions;
-export const fetchUserFavorite =  (id) => async dispatch => {
+export const fetchUserFavorite = (id) => async dispatch => {
     try {
         dispatch (setLoading(true));
-        const response = await axios.get(`%{apiUrl}/users?page=1&id=${id}`);
+        const response = await axios.get(`${apiUrl}/users?page=1&id=${id}`);
         dispatch(setUserFavorite(response.data.albums));
         dispatch(setLoading(false));
     } catch (error) {
+        dispatch(setLoading(false));
         console.log(`Erreur lors de la requête fetchUserFavorites: ${error}`);
     }
 }
