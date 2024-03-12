@@ -7,12 +7,17 @@ import { selectAlbumsData } from '../../redux/album/albumSelector';
 import { AiFillHeart, AiFillInfoCircle, AiOutlineHeart, AiOutlineInfoCircle } from 'react-icons/ai';
 import { Collapse } from 'react-collapse';
 import InfoCollapse from './InfoCollapse';
+import { USER_INFOS } from '../../constants/appConstant';
 
 const ToolbarDetail = ({dataAlbum}) => {
 
   // on déclare nos constantes
   const data= dataAlbum
   const songs = dataAlbum?.songs;
+  // on récupère l'id de l'album
+  const albumId = dataAlbum?.id;
+  // on récupère l'id de l'user en session
+  const userId = localStorage.getItem('USER_INFOS') ? JSON.parse(localStorage.getItem('USER_INFOS')).userId : null;
   // on déclare nos states
   const [index, setIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +25,7 @@ const ToolbarDetail = ({dataAlbum}) => {
   // div plié ou déplié
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isInList, setIsInList] = useState(false);
+  const [listArray, setListArray] = useState([]);
 
   // on récupére les hooks
   useEffect(() => {

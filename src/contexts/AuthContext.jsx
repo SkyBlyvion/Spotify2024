@@ -23,7 +23,7 @@ const AuthContextProvider = ({children}) => {
             setUserId(user.userId);
             setEmail(user.email);
             setNickname(user.nickname);
-            localStorage.setItem('userInfos', JSON.stringify(user));
+            localStorage.setItem('USER_INFOS', JSON.stringify(user));
         } catch (error) {
             throw new Error(`Error while signing in: ${error}`);
         }
@@ -34,7 +34,7 @@ const AuthContextProvider = ({children}) => {
             setUserId('');
             setEmail('');
             setNickname('');
-            localStorage.removeItem('userInfos');
+            localStorage.removeItem('USER_INFOS');
         } catch (error) {
             throw new Error(`Error while signing out: ${error}`);
         }
