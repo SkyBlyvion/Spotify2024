@@ -4,7 +4,8 @@ import parse from 'html-react-parser';
 import { RiArticleLine } from 'react-icons/ri';
 import { FaCompactDisc } from 'react-icons/fa';
 import { BsCalendar2Week } from 'react-icons/bs';
-import {GiMicrophone } from 'react-icons/gi';
+import { GiMicrophone } from 'react-icons/gi';
+import InfoIconLabel from './InfoIconLabel';
 
 const InfoCollapse = ({dataAlbum}) => {
 
@@ -34,31 +35,24 @@ const InfoCollapse = ({dataAlbum}) => {
             </div>
             {/* container de droite */}
             <div className='flex-col ' style={{minWidth: '20%'}}>
-                <div className='flex items-center p-1 m-1 pb-5'>
-                    <FaCompactDisc  className='me-1' style={styleIcon}/>
-                    <span className='font-bold mr-1'>
-                        Album: {dataAlbum?.title}
-                    </span>
-                </div>
+
+                < InfoIconLabel 
+                icon={{iconName: FaCompactDisc}}
+                label='Album'
+                value={dataAlbum?.title}/>
+
+                < InfoIconLabel 
+                icon={{iconName: FaCompactDisc}}
+                label='Artiste'
+                value={dataAlbum?.artist?.name}/>
+
+                < InfoIconLabel 
+                icon={{iconName: FaCompactDisc}}
+                label='Sorti le'
+                value={dateFormat}/>
+            
             </div>
-            {/* artiste*/}
-            <div className='flex-col ' style={{minWidth: '20%'}}>
-                <div className='flex items-center p-1 m-1 pb-5'>
-                    <GiMicrophone  className='me-1' style={styleIcon}/>
-                    <span className='font-bold mr-1'>
-                        Artiste: {dataAlbum?.artist?.name}
-                    </span>
-                </div>
-            </div>
-            {/* date de sortie */}
-            <div className='flex-col ' style={{minWidth: '20%'}}>
-                <div className='flex items-center p-1 m-1 pb-5'>
-                    <BsCalendar2Week  className='me-1' style={styleIcon}/>
-                    <span className='font-bold mr-1'>
-                        Sorti le: {dateFormat}
-                    </span>
-                </div>
-            </div>
+          
         </div>
     </>
   )
