@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { albumUrl, artistUrl } from '../../constants/apiConstant'
+import PageLoader from '../loader/PageLoader'
 
 const HeaderInfo = ({dataAlbum}) => {
 
@@ -11,6 +12,10 @@ const HeaderInfo = ({dataAlbum}) => {
     // formater la date, recupere que l'année
     const releaseDate = new Date(dataAlbum?.releaseDate).getFullYear() ?? 'Date Inconnue'
     
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        setIsLoading(false);
+    }, [])
     // on definit le nombre de titres par albums
     // si il y a plusieurs titres on affiche le nombre 
     const nbTitle = dataAlbum.songs ? dataAlbum?.songs.length > 1 
@@ -47,7 +52,7 @@ const HeaderInfo = ({dataAlbum}) => {
 
 
   return (
-    dataAlbum &&
+    isLoading ? <PageLoader /> :
     <div className='flex items-center'>
         <img src={imgPath} alt={dataAlbum?.artist?.name ?? 'photoArtiste'} className='w-10 h-10 rounded-full'/>
         <p className='font-bold text-base p-1'>{dataAlbum?.artist?.name ?? 'artiste inconnu'}</p>

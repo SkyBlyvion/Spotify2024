@@ -19,9 +19,9 @@ const Sidebar = () => {
         <div className='hidden md:flex flex-col w-[240px] py-10 px-4 bg-black'>
             <Link to = '/'>
                 <img src={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
-                    <NavLinks data={dataAlbumNav} marginTop={'mt-10'}/>
-                    <NavLinks data={dataUserNav} marginTop={'mt-5'}/>
             </Link>
+                <NavLinks data={dataAlbumNav} marginTop={'mt-10'}/>
+                <NavLinks data={dataUserNav} marginTop={'mt-5'}/>
         </div>
         {/* gestion des icones pour ouvrir/fermer le menu en petti ecran */}
         <div className='absolute md:hidden block top-6 right-3'>
