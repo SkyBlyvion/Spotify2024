@@ -4,7 +4,9 @@ import { playPause, setActiveAlbum, setActiveSong } from '../../redux/Player/Pla
 import PageLoader from '../loader/PageLoader';
 import PlayPause from '../PlayPause';
 import { selectAlbumsData } from '../../redux/album/albumSelector';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart, AiFillInfoCircle, AiOutlineHeart, AiOutlineInfoCircle } from 'react-icons/ai';
+import { Collapse } from 'react-collapse';
+import InfoCollapse from './InfoCollapse';
 
 const ToolbarDetail = ({dataAlbum}) => {
 
@@ -42,30 +44,49 @@ const ToolbarDetail = ({dataAlbum}) => {
   // méthode pour gérer le favoris
   const toggleFavorite = () => {
     setIsInList(!isInList);
+    //TODO: enregistrer ou supprimer dans la bdd le favoris
   }
   
+  //méthode pour ouvrir ou fermer le collapse
+  const handleCollapseClick = () => {
+    setIsCollapsed(!isCollapsed);  
+  }
+
   return (
     isLoading ? <PageLoader /> :
-    <div className='flex items-center ms-5'>
-      <div className='cursor-pointer me-3 '>
-        <PlayPause
-          songs={songs}
-          handlePause={handlePauseClick}
-          handlePlay={()=>handlePlayClick(index)}
-          isPlaying={isPlaying}
-          activeSong={activeSong}
-          index={index}
-          data={data}
-        />
+    <>
+      <div className='flex items-center ms-5'>
+        <div className='cursor-pointer me-3 '>
+          <PlayPause
+            songs={songs}
+            handlePause={handlePauseClick}
+            handlePlay={()=>handlePlayClick(index)}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            index={index}
+            data={data}
+          />
+        </div>
+        {/* bouton favoris */}
+        <div className='cursor-pointer' onClick={() => toggleFavorite()}>
+          {isInList ? 
+          <AiFillHeart className='text-green m-3' style={{fontSize: '30px'}}/>
+          : <AiOutlineHeart className='text-green m-3' style={{fontSize: '30px'}}/>}
+        </div>
+        <div className='cursor-pointer' onClick={handleCollapseClick}>
+          {isCollapsed ? 
+            <AiFillInfoCircle className='text-green m-3' style={{fontSize: '30px'}}/>
+            : <AiOutlineInfoCircle className='text-green m-3' style={{fontSize: '30px'}}/>}
+        </div>
       </div>
-      {/* bouton favoris */}
-      <div className='cursor-pointer' onClick={() => toggleFavorite()}>
-        {isInList ? 
-        <AiFillHeart className='text-green m-3' style={{fontSize: '30px'}}/>
-        : <AiOutlineHeart className='text-green m-3' style={{fontSize: '30px'}}/>
-      }
+      {/* on récupère les infos du collapse */}
+      <div>
+        <Collapse isOpened={isCollapsed}>
+            {/* Affichage du rendu du collapse */}
+            <InfoCollapse dataAlbum={data} />
+        </Collapse>
       </div>
-    </div>
+    </>
   )
 }
 
