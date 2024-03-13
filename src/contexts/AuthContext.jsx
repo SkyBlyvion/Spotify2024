@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { USER_INFOS } from "../constants/appConstant";
 
 // création du context d'authentification
 const AuthContext = createContext({
@@ -23,18 +24,18 @@ const AuthContextProvider = ({children}) => {
             setUserId(user.userId);
             setEmail(user.email);
             setNickname(user.nickname);
-            localStorage.setItem('USER_INFOS', JSON.stringify(user));
+            localStorage.setItem(USER_INFOS, JSON.stringify(user));
         } catch (error) {
             throw new Error(`Error while signing in: ${error}`);
         }
     }
 
-    const singOut = async () => {
+    const signOut = async () => {
         try {
             setUserId('');
             setEmail('');
             setNickname('');
-            localStorage.removeItem('USER_INFOS');
+            localStorage.removeItem(USER_INFOS);
         } catch (error) {
             throw new Error(`Error while signing out: ${error}`);
         }
@@ -49,7 +50,7 @@ const AuthContextProvider = ({children}) => {
         setEmail,
         setNickname,
         signIn,
-        singOut
+        signOut
     }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

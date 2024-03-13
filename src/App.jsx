@@ -23,7 +23,7 @@ const App = () => {
       return;
     }else{
       signOut();
-      navigate('/login');
+      navigate('/');
     }
   }
 

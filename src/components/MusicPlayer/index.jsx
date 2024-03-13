@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Track from './Track';
 import Controls from './Controls';
-import PlayPause, { nextSong, prevSong } from '../../redux/Player/PlayerSlice';
+import PlayPause, { nextSong, playPause, prevSong } from '../../redux/Player/PlayerSlice';
 import VolumeBar from './VolumeBar';
+import SeekBar from './SeekBar';
+import Player from './Player';
+
 
 const MusicPlayer = () => {
     // on récupère toutes les donnés du slice player
@@ -12,10 +15,19 @@ const MusicPlayer = () => {
     //on déclare nos states
     const [shuffle, setShuffle] = useState(false); // état pour le mode aléatoire
     const [repeat, setRepeat] = useState(false); // etat pour le mode repeat
-    const [volume, setVolume] = useState(0.3);
+    const [volume, setVolume] = useState(0.3); // volume
+    const [duration, setDuration] = useState(0); // duree de la chanson
+    const [seekTime, setSeekTime] = useState(0); // permet de définir la position de la barre du temps de lecture( si on deplace manuellement)
+    const [appTime, setAppTime] = useState(0); // temps actuel de la chanson
 
     // on récupére les hooks
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        // si le store contient un tableau de chansons on dispatch play/pause a true
+        if(currentSongs.length) dispatch(playPause(true));
+    }, [currentIndex]) // si on change de chanson => reload composant
+    
 
     // on crée nos méthodes
     // méthode pour gérer l'état de play/pause
@@ -24,7 +36,7 @@ const MusicPlayer = () => {
         if(!isActive) return;
 
         // si une chanson est active
-        isPlaying ? dispatchEvent(PlayPause(false)) : dispatchEvent(PlayPause(true));
+        isPlaying ? dispatch(playPause(false)) : dispatch(playPause(true));
     }
 
     // méthode pour avancer à la chanson suivante
@@ -72,6 +84,26 @@ const MusicPlayer = () => {
                 setRepeat={setRepeat} // pour changer le mode repeat true/false
                 shuffle={shuffle} // savoir si on est en mode shuffle aléatoire
                 setShuffle={setShuffle} // pour changer le mode shuffle true/false
+            />
+            <SeekBar
+                value={appTime} // valeur actuelle de la lecture
+                min="0" // valeur minimale
+                max={duration} // valeur maximale de la lecture
+                onInput={(event) => setSeekTime(event.target.value)} // pour recuperer la position de la barre de lecture
+                setSeekTime={setSeekTime} // pour changer la position de la barre de lecture
+                appTime={appTime} // temps actuel de la chanson
+            />
+            <Player
+                activeSong={activeSong} // chanson active
+                volume={volume} // pour recuperer le volume
+                isPlaying={isPlaying} // savoir si le titre est en cours de lecture
+                seekTime={seekTime} // pour changer la position de la barre de lecture
+                repeat={repeat} // savoir si on est en mode repeat
+                currentIndex={currentIndex} // index de la chanson actuelle
+                onEnded={handleNextSong} // quand la chanson est finie, pour passer a la suivante
+                onTimeUpdate={(event)=> setAppTime(event.target.currentTime)} // pour recuperer le temps actuel
+                onLoadedData={(event)=> setDuration(event.target.duration)} // pour recuperer la duree de la chanson
+            
             />
         </div>
         <VolumeBar

@@ -3,6 +3,7 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { RouterProvider } from 'react-router-dom';
 import OnlineRouter from './OnlineRouter';
 import OfflineRouter from './OfflineRouter';
+import { USER_INFOS } from '../constants/appConstant';
 
 // si one est connecté on affiche le composant Home sinon on affiche le composant Login
 // creation d'un mini context pour la session
@@ -26,7 +27,7 @@ const AppRouter = () => {
 
     // on va regarder si on a des infos dans le localstorage
     const getUserInfos = async () => {
-        const user = JSON.parse(localStorage.getItem('USER_INFOS'));
+        const user = JSON.parse(localStorage.getItem(USER_INFOS));
 
         // on verifie si on a des infos utilisateur en localstorage
         if(user){
