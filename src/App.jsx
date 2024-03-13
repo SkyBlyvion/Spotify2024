@@ -12,6 +12,10 @@ const App = () => {
 
   // on recupere les données de l'user depuis le localstorage
   const userInfo = JSON.parse(localStorage.getItem(USER_INFOS));
+  
+  // on recupere le hook de navigation
+  const navigate = useNavigate();
+  const {signOut} = useAuthContext();
 
   const fetchUser = async () => {
     const user = await checkUser(userInfo);
@@ -23,9 +27,6 @@ const App = () => {
     }
   }
 
-  const {signOut} = useAuthContext()
-  // on recupere le hook de navigation
-  const navigate = useNavigate();
 
   // récupère activeSong du slice player
   const {activeSong} = useSelector((state)=> state.player);
