@@ -31,6 +31,10 @@ const ToolbarDetail = ({dataAlbum}) => {
   
   // on récupére les hooks
   const dispatch = useDispatch();
+
+  // on recupére les données des slice 
+  const {isPlaying, activeSong} = useSelector(state => state.player);
+  const { loading, userFavorite} = useSelector(selectUserData);
   useEffect(() => {
     dispatch(fetchUserFavorite(userId));
     checkFavorites();
@@ -47,9 +51,6 @@ const ToolbarDetail = ({dataAlbum}) => {
     }
   }
 
-  // on recupére les données des slice 
-  const {isPlaying, activeSong} = useSelector(state => state.player);
-  const { loading, userFavorite} = useSelector(selectUserData);
 
   // on va definir la methode pause
   const handlePauseClick = () => {
@@ -92,8 +93,8 @@ const ToolbarDetail = ({dataAlbum}) => {
   return (
     isLoading ? <PageLoader /> :
     <>
-      <div className='flex items-center ms-5'>
-        <div className='cursor-pointer me-3 '>
+      <div className='flex items-center ml-5'>
+        <div className='cursor-pointer mr-3 '>
           <PlayPause
             songs={songs}
             handlePause={handlePauseClick}

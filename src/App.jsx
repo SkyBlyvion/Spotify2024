@@ -1,9 +1,40 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
+import { USER_INFOS } from './constants/appConstant'
+import { useAuthContext } from './contexts/AuthContext'
+import { checkUser } from './services/userService'
+import { useSelector } from 'react-redux'
+import MusicPlayer from './components/MusicPlayer'
 
 const App = () => {
+
+  // on recupere les données de l'user depuis le localstorage
+  const userInfo = JSON.parse(localStorage.getItem(USER_INFOS));
+
+  const fetchUser = async () => {
+    const user = await checkUser(userInfo);
+    if(user){
+      return;
+    }else{
+      signOut();
+      navigate('/login');
+    }
+  }
+
+  const {signOut} = useAuthContext()
+  // on recupere le hook de navigation
+  const navigate = useNavigate();
+
+  // récupère activeSong du slice player
+  const {activeSong} = useSelector((state)=> state.player);
+
+  useEffect(() => {
+    fetchUser();
+  }, [userInfo])
+  
+
   return (
     <div className='relative flex'>
       <Sidebar/>
@@ -15,7 +46,11 @@ const App = () => {
               </div>
             </div>
         </div>
-    {/* TODO: ici le player */}
+        {activeSong?.title && (
+          <div className='absolute h-28 bottom-0 left-0 right-0 animate-slideup bg-gradient-to-br from-white_01 to-black backdrop-blur-lg rounded-t-3xl z-10'>
+            <MusicPlayer/>
+          </div>
+        )}
     </div>
   )
 }
