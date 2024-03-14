@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
+import { useDispatch } from 'react-redux';
+import { fetchSearch } from '../redux/album/albumSlice';
 
+// rechercher un album par words
 const SearchBar = () => {
 
     // on déclare un state pour le champ de recherche
     const [searchWord, setSearchWord] = useState('');
 
+    // on va avoir besoin d'apeller un hook pour apeller les méthodes du slice
+    // onr ecupére le hook dispatch
+    const dispatch = useDispatch();
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('searchWord', searchWord)
+        dispatch(fetchSearch(searchWord));
     }
-
 
   return (
     <form 
