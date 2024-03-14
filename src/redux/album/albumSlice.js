@@ -86,4 +86,11 @@ export const fetchSearch = (searchWord) => async dispatch => {
     }
 };
 
+// on crée une méthode pour reset le recherche
+// je reinitialise mes states a un tableau vide
+export const fetchResetSearch = () => async dispatch => {
+    dispatch(setSearchAlbum([]));
+    dispatch(setSearchArtist([]));
+}
+
 export default albumSlice.reducer
