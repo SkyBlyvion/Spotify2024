@@ -10,7 +10,8 @@ const albumSlice = createSlice({
         albums: [], // on init un tableau vide pour les albums
         loading: false, // on init le state loading a false pour pouvoir gerer lattente des requetes asyncrones
         albumDetails: {},
-        searchAlbum : []
+        searchAlbum : [],
+        searchArtist: []
     },
     // methode qui permet de remplir les states (mise en rayon)
     reducers: {
@@ -26,11 +27,14 @@ const albumSlice = createSlice({
         },
         setSearchAlbum: (state, action)=>{
             state.searchAlbum = action.payload
+        },
+        setSearchArtist: (state, action)=>{
+            state.searchArtist = action.payload
         }
     }
 });
 
-export const { setAlbums, setLoading, setAlbumDetails, setSearchAlbum } = albumSlice.actions;
+export const { setAlbums, setLoading, setAlbumDetails, setSearchAlbum, setSearchArtist } = albumSlice.actions;
 // fin du recucer slice
 
 
@@ -72,7 +76,9 @@ export const fetchSearch = (searchWord) => async dispatch => {
     try {
         dispatch(setLoading(true));
         const responseAlbums = await axios.get(`${apiUrl}/alba?page=1&isActive=true&title=${searchWord}`);
+        const responseArtist = await axios.get(`${apiUrl}/alba?page=1&isActive=true&artist.name=${searchWord}`);
         dispatch(setSearchAlbum(responseAlbums.data));
+        dispatch(setSearchArtist(responseArtist.data));
         dispatch(setLoading(false));
     } catch (error) {
         console.log(`Erreur sur fetch search: ${error}`);
