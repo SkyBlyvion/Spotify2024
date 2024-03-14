@@ -13,7 +13,7 @@ const InfoCollapse = ({dataAlbum}) => {
     const date = new Date(dataAlbum?.releaseDate);
     const option = {day: 'numeric', month: 'long', year: 'numeric'};
     const dateFormat = date.toLocaleDateString('fr-FR', option);
-    // console.log(dateFormat);
+
 
   return (
     <>

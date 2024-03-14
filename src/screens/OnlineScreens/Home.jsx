@@ -23,8 +23,7 @@ const Home = () => {
 
   // on peut specifier le tableau qui nous interesse
   const dataAlbum = albums['hydra:member']
-  // console.log('data albums', dataAlbum);
-  // console.log('data albums', dataAlbum);
+
 
   return (
     loading ? <PageLoader/>:

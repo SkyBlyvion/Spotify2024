@@ -18,7 +18,7 @@ const playerSlice = createSlice({
         // on va definir nos setters pour chaque propriété du state
         // Tout ce que l'on stocke lorsceque l'on active une chanson
         setActiveSong: (state, action) => {
-            console.log(state, action)
+
             // stockage de la chanson en cours de lecture dans ActiveSong
             state.activeSong = action.payload?.songs[action.payload?.index];
             // stockage du tableau de chansons
