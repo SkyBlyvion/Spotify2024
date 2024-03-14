@@ -20,7 +20,7 @@ const ToolbarDetail = ({dataAlbum}) => {
   // on récupère l'id de l'album
   const albumId = dataAlbum?.id;
   // on récupère l'id de l'user en session
-  const userId = localStorage.getItem('USER_INFOS') ? JSON.parse(localStorage.getItem('USER_INFOS')).userId : null;
+  const userId = localStorage.getItem(USER_INFOS) ? JSON.parse(localStorage.getItem(USER_INFOS)).userId : null;
   // on déclare nos states
   const [index, setIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
