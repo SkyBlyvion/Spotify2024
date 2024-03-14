@@ -9,13 +9,15 @@ const ArtistCard = ({dataArtist}) => {
     const imgPath = dataArtist?.artist?.imagePath 
     ? `${artistUrl}/${dataArtist?.artist?.imagePath}`
     : `${imageUrl}/artist.png`;
+    const userId = dataArtist?.artist?.id ?? 0
+    const name = dataArtist?.artist?.name ?? 'Unknown Artist'
 
   return (
-    <Link to='#'> 
+    <Link to={`/artist/detail/${userId}`}> 
         <div className='flex flex-col justify-center items-center bg-white_01 rounded-lg shadow-lg p-4'>
             <div className='flex flex-col justify-center items-center'>
-                <img className='rounded-full w-40 h-40 object-covers' src={imgPath} alt={dataArtist?.artist?.name} />
-                <h3 className='font-bold text-xl text-white text-center mt-2'>{dataArtist?.artist?.name}</h3>
+                <img className='rounded-full w-40 h-40 object-covers' src={imgPath} alt={name} />
+                <h3 className='font-bold text-xl text-white text-center mt-2'>{name}</h3>
             </div>
         </div>
     </Link>
