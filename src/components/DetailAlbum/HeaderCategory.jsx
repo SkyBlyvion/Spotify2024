@@ -1,22 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeaderCategory = ({ dataAlbum }) => {
 
-    // Vérifie si `genre` est défini et a des éléments
-    const genreList = dataAlbum?.genre && dataAlbum.genre.length > 0
-        ? dataAlbum.genre.map((g) => g.label).join(', ') 
-        : 'Aucun genre';
-
-    // On calcule le texte pour le nombre de genres
-    const genreCountText = dataAlbum?.genre && dataAlbum.genre.length > 1
-        ? `${dataAlbum.genre.length} genres`
-        : dataAlbum?.genre && dataAlbum.genre.length === 1
-        ? '1 genre'
-        : 'Aucun genre';
+    //on récupére notre tableau de genre
+    const categories = dataAlbum?.genre;
 
     return (
-        <div className='flex items-center'> 
-            <p className='text-white'>{genreCountText} - {genreList}</p>
+        <div className='flex items-center justify-start mt-4'> 
+            {categories && categories.map((category, index) => (
+                index === 0
+                ? <Link key={index} to='#' className='font-medium cursor-pointer'>{category.label}</Link>
+                : <>
+                    {index !== 0 && <span className="mx-2">&#8226;</span>}
+                    <Link key={index} to='#' className='font-medium cursor-pointer'>{category.label}</Link>
+                </>
+            ))}
         </div>
     );
 };
