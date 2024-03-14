@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { apiUrl } from "../../constants/apiConstant";
-// on crée notre premier reducer
+// on crée notre premier reducer / slice 
 const albumSlice = createSlice({
     // on lui donne un nom
     name: 'albums',
@@ -10,6 +10,7 @@ const albumSlice = createSlice({
         albums: [], // on init un tableau vide pour les albums
         loading: false, // on init le state loading a false pour pouvoir gerer lattente des requetes asyncrones
         albumDetails: {},
+        searchAlbum : []
     },
     // methode qui permet de remplir les states (mise en rayon)
     reducers: {
@@ -22,10 +23,18 @@ const albumSlice = createSlice({
         },
         setAlbumDetails: (state, action)=>{
             state.albumDetails = action.payload
+        },
+        setSearchAlbum: (state, action)=>{
+            state.searchAlbum = action.payload
         }
     }
 });
-export const { setAlbums, setLoading, setAlbumDetails } = albumSlice.actions;
+
+export const { setAlbums, setLoading, setAlbumDetails, setSearchAlbum } = albumSlice.actions;
+// fin du recucer slice
+
+
+// --------------------------------------------------------------------------------------------------------
 
 // on crée la méthode qui permet de recuperer les données des albums de la bdd
 export const fetchAlbums = () => async dispatch => {
@@ -55,6 +64,19 @@ export const fetchAlbumsDetails = (id) => async dispatch => {
         console.log(`Erreur sur fetch albumDetail: ${error}`);
         dispatch(setLoading(false));
 
+    }
+};
+
+// onc crée la méthode pour faire une recherche d'albums
+export const fetchSearch = (searchWord) => async dispatch => {
+    try {
+        dispatch(setLoading(true));
+        const responseAlbums = await axios.get(`${apiUrl}/alba?page=1&isActive=true&title=${searchWord}`);
+        dispatch(setSearchAlbum(responseAlbums.data));
+        dispatch(setLoading(false));
+    } catch (error) {
+        console.log(`Erreur sur fetch search: ${error}`);
+        dispatch(setLoading(false));
     }
 };
 
