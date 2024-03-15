@@ -6,7 +6,7 @@ import { playPause, setActiveAlbum, setActiveSong } from '../redux/Player/Player
 import PlayPause from './PlayPause'
 
 
-const AlbumCard = ({data, index, songs, isPlaying, activeSong}) => {
+const AlbumCard = ({data, index, songs, isPlaying, activeSong, artist=''}) => {
 
     // constante qui récupére l'image de l'album
     const imgPath = `${albumUrl}/${data.imagePath}`
@@ -14,7 +14,7 @@ const AlbumCard = ({data, index, songs, isPlaying, activeSong}) => {
     const dispatch = useDispatch();
 
     // on redefinit les constantes pour les donner aux albums
-    const artistName = data?.artist?.name ?? 'Artiste inconnu'
+    const artistName = data?.artist?.name ?? artist
     const albumName = data?.title ?? 'Album inconnu'
     const albumId = data?.id ?? 0
 

@@ -7,6 +7,7 @@ import PageLoader from '../loader/PageLoader';
 import ArtistCard from '../ArtistCard';
 import HeaderDetail from './HeaderDetail';
 import BiographyArtist from './BiographyArtist';
+import ListAlbumArtist from './ListAlbumArtist';
 
 
 const DetailArtist = () => {
@@ -41,6 +42,7 @@ const DetailArtist = () => {
             <div>
                 <HeaderDetail dataArtist={artistsDetails}/>
                 <BiographyArtist dataArtist={artistsDetails}/>
+                <ListAlbumArtist dataArtist={artistsDetails}/>
             </div>
         </>
 
