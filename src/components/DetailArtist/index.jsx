@@ -5,6 +5,8 @@ import { fetchArtists } from '../../redux/artist/artistSlice';
 import { selectArtistsData } from '../../redux/artist/artistSelector';
 import PageLoader from '../loader/PageLoader';
 import ArtistCard from '../ArtistCard';
+import HeaderDetail from './HeaderDetail';
+import BiographyArtist from './BiographyArtist';
 
 
 const DetailArtist = () => {
@@ -22,35 +24,26 @@ const DetailArtist = () => {
        dispatch(fetchArtists(id))
     }, [])
 
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        setIsLoading(false);
-    }, [])
-
     // recupere le sinfo de lartiste par le selector
     const {artistsDetails, loading} = useSelector(selectArtistsData)
 
-    console.log('detail artiste',artistsDetails)
+    // console.log('detail artiste',artistsDetails)
 
     // petit element graphique pour faire un point de separation
     const Dot = () => (
         <p>&#8226;</p>
     )
     
+    // on lui envoie a herder, artistdetails est le sinfo de lartiste
     return (
-        isLoading ? <PageLoader /> :
+        loading ? <PageLoader /> :
         <>
             <div>
-                <p>Name: {artistsDetails?.name}</p>
-                <Dot/>
-                <p>Biography: {artistsDetails?.biography}</p>
-                <Dot/>
-                <p>Albums: {artistsDetails?.albums?.length}</p>
-                <Dot/>
-                <p>Card</p>
-                <ArtistCard />
+                <HeaderDetail dataArtist={artistsDetails}/>
+                <BiographyArtist dataArtist={artistsDetails}/>
             </div>
         </>
+
     );
 };
 

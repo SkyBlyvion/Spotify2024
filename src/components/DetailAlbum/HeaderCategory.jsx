@@ -11,10 +11,10 @@ const HeaderCategory = ({ dataAlbum }) => {
             {categories && categories.map((category, index) => (
                 index === 0
                 ? <Link key={index} to='#' className='font-medium cursor-pointer'>{category.label}</Link>
-                : <>
+                : <div key={index}>
                     {index !== 0 && <span className="mx-2">&#8226;</span>}
-                    <Link key={index} to='#' className='font-medium cursor-pointer'>{category.label}</Link>
-                </>
+                    <Link to='#' className='font-medium cursor-pointer'>{category.label}</Link>
+                </div>
             ))}
         </div>
     );
