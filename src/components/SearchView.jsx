@@ -25,6 +25,7 @@ const SearchView = () => {
     // si j'ai datablum et que sa longeur est plus grand que zero, j'affiche les resultats sinon null
   return (
     <>
+        {dataAlbum && dataAlbum.length > 0 && dataArtist && dataArtist.length > 0 && dataTitle && dataTitle.length > 0 && (<h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Aucun résultat trouvé</h2>)}
         {/* Partie Albums */}
         {dataAlbum && dataAlbum.length > 0 
             ? <h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Résultat des albums</h2>
@@ -40,11 +41,9 @@ const SearchView = () => {
                         activeSong={activeSong}
                         index={0}
                     />
-                  
                 </div>
             ))
             }
-
         </div>
         {/* Partie Artistes */}
         {dataArtist && dataArtist.length > 0 
@@ -58,7 +57,6 @@ const SearchView = () => {
                 </div>
             ))
             }
-            
         </div>
         {/* Partie title */}
         {dataTitle && dataTitle.length > 0 
@@ -75,14 +73,10 @@ const SearchView = () => {
                         activeSong={activeSong}
                         index={0}
                     />
-                  
                 </div>
             ))
             }
-
         </div>
-
-
     </>
   )
 }
