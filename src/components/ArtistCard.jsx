@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 const ArtistCard = ({dataArtist}) => {
 
     //on déclare notre constante d'image
-    const imgPath = dataArtist?.artist?.imagePath 
-    ? `${artistUrl}/${dataArtist?.artist?.imagePath}`
+    const imgPath = dataArtist?.imagePath 
+    ? `${artistUrl}/${dataArtist?.imagePath}`
     : `${imageUrl}/artist.png`;
-    const userId = dataArtist?.artist?.id ?? 0
-    const name = dataArtist?.artist?.name ?? 'Unknown Artist'
+    const userId = dataArtist?.id ?? 0
+    const name = dataArtist?.name ?? 'Unknown Artist'
 
   return (
     <Link to={`/artist-detail/${userId}`}> 
