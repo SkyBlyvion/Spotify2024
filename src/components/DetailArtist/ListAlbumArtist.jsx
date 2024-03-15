@@ -15,7 +15,6 @@ const ListAlbumArtist = ({dataArtist}) => {
     //on recupére les données du tableau album
     const albums = dataArtist?.albums
 
-
     // on map pour afficher les albums et fonction annonyme et auto return
     // on recupére data et index
     // en mapp on est dans l'objet album
@@ -24,7 +23,11 @@ const ListAlbumArtist = ({dataArtist}) => {
 
     <>
         <div className='flex flex-wrap'>
-            {albums && albums.map((data, index)=>(<AlbumCard key={index} data={data} songs={data?.songs} isPlaying={isPlaying} activeSong={activeSong} index={0} artist={dataArtist?.name}/>))}
+            {albums && albums.map((data, index)=>(
+                <div key={index} className='m-3'> 
+                    <AlbumCard key={index} data={data} songs={data?.songs} isPlaying={isPlaying} activeSong={activeSong} index={0} artist={dataArtist?.name}/>
+                </div>
+            ))}
         </div>
     </>
     
