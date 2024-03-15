@@ -13,7 +13,7 @@ const ArtistCard = ({dataArtist}) => {
     const name = dataArtist?.artist?.name ?? 'Unknown Artist'
 
   return (
-    <Link to={`/artist/detail/${userId}`}> 
+    <Link to={`/artist-detail/${userId}`}> 
         <div className='flex flex-col justify-center items-center bg-white_01 rounded-lg shadow-lg p-4'>
             <div className='flex flex-col justify-center items-center'>
                 <img className='rounded-full w-40 h-40 object-covers' src={imgPath} alt={name} />

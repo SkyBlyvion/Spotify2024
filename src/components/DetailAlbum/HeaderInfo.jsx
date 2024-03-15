@@ -55,7 +55,7 @@ const HeaderInfo = ({dataAlbum}) => {
   return (
     isLoading ? <PageLoader /> :
     <div className='flex items-center'>
-        <Link>
+        <Link to={`/artist-detail/${dataAlbum?.artist?.id}`}>
         <img src={imgPath} alt={dataAlbum?.artist?.name ?? 'photoArtiste'} className='w-10 h-10 rounded-full'/>
         </Link>
         <p className='font-bold text-base p-1'>{dataAlbum?.artist?.name ?? 'artiste inconnu'}</p>

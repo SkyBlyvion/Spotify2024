@@ -29,7 +29,7 @@ const SearchView = () => {
         {/* Partie Albums */}
         {dataAlbum && dataAlbum.length > 0 
             ? <h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Résultat des albums</h2>
-            : <h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Aucun résultat</h2>
+            : <h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Aucun album trouvé</h2>
         }
         <div className='flex flex-wrap'>
             {dataAlbum && dataAlbum.map((data, index)=>(
@@ -50,7 +50,7 @@ const SearchView = () => {
         {/* Partie Artistes */}
         {dataArtist && dataArtist.length > 0 
             ? <h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Résultat des artistes</h2>
-            : <h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Aucun Artiste</h2>
+            : <h2 className='font-bold text-3xl text-white text-left mt-10 mb-4'>Aucun Artiste trouvé</h2>
         }
         <div className='flex flex-wrap'>
             {dataArtist && dataArtist.map((data, index)=>(
