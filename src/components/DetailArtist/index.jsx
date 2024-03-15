@@ -22,7 +22,7 @@ const DetailArtist = () => {
     const id = params.id;
 
     useEffect(()=> {
-       dispatch(fetchArtists(id))
+        dispatch(fetchArtists(id))
     }, [])
 
     // recupere le sinfo de lartiste par le selector
