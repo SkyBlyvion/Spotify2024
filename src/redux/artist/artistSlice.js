@@ -5,13 +5,13 @@ import axios from "axios";
 const artistSlice = createSlice({
     name: 'artists',
     initialState: {
-        artistDetail: {},
+        artistsDetails: {},
         loading: false,
         
     },
     reducers: {
         setArtistsDetail: (state, action)=>{
-            state.artistDetail = action.payload['hydra:member'][0];
+            state.artistsDetails = action.payload['hydra:member'][0]
         },
         setLoading: (state, action)=>{
             state.loading = action.payload

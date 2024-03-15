@@ -17,6 +17,7 @@ const HeaderInfo = ({dataAlbum}) => {
     useEffect(() => {
         setIsLoading(false);
     }, [])
+    
     // on definit le nombre de titres par albums
     // si il y a plusieurs titres on affiche le nombre 
     const nbTitle = dataAlbum.songs ? dataAlbum?.songs.length > 1 
