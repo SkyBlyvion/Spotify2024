@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { dataAlbumNav, dataUserNav, imgLogo, styleIcon } from '../constants/appConstant'
 import { RiCloseLine } from 'react-icons/ri'
 import { HiOutlineMenu } from 'react-icons/hi'
-// les fichiers sonts importés depuis un dossier
 import NavLinks from './NavLinks'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../contexts/AuthContext'
+import { FiLogOut } from 'react-icons/fi'
 
 
 // React functional component that renders the sidebar menu. It uses the useState hook to manage the state of mobileMenu,
@@ -12,6 +13,19 @@ import { Link } from 'react-router-dom'
 // It also uses the NavLinks component to display the navigation links. Additionally, it includes icons for toggling the mobile menu.
 const Sidebar = () => {
     const [mobileMenu, isMobileMenu] = useState(false)
+
+    // on recupere l'id de l'utilisateur
+    const {userId, signOut} = useAuthContext();
+    console.log('userId', userId)
+
+    // on recupere le hook de navigation
+    const navigate = useNavigate();
+
+    // on crée une méthode de déconnexion
+    const handleLogout=()=>{
+        signOut();
+        navigate('/');
+    }
 
   return (
     <>
@@ -21,7 +35,21 @@ const Sidebar = () => {
                 <img src={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
             </Link>
                 <NavLinks data={dataAlbumNav} marginTop={'mt-10'}/>
-                <NavLinks data={dataUserNav} marginTop={'mt-5'}/>
+                <NavLinks data={dataUserNav} marginTop={'mt-5'} userId={userId}/>
+                {/* ajout bouton deconnexion */}
+                <div className='mt-5'>
+                    <button onClick={()=>{
+                        const confirmLogout = window.confirm('Voulez-vous vous deconnecter ?');
+                        if(confirmLogout){
+                            handleLogout();
+                        }
+                    }}
+                    className='w-full flex p-3 items-center justify-start font-medium text-sm text-white hover:bg-green_06'
+                    >
+                        <FiLogOut className='w-6 h-6 mr-2'/>
+                        Se deconnecter
+                    </button>
+                </div>
         </div>
         {/* gestion des icones pour ouvrir/fermer le menu en petti ecran */}
         <div className='absolute md:hidden block top-6 right-3'>

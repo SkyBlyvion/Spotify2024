@@ -5,7 +5,7 @@ import AlbumCard from '../AlbumCard';
 //premiere chose a faire, je recupere et destructure les data
 const ListAlbumArtist = ({dataArtist}) => {
 
-    console.log('data artiste',dataArtist)
+    // console.log('data artiste',dataArtist)
 
     //faut commencer par recuperer le active songs and isplaying de notre sliceplayer
     // on recupére les données du slice Player
