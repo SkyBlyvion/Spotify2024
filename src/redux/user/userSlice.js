@@ -8,6 +8,7 @@ const userSlice = createSlice({
         loading: false,
         userFavorite: [],
         user: {},
+        avatars: [],
     },
     reducers:{
         setLoading: (state, action)=>{
@@ -19,10 +20,13 @@ const userSlice = createSlice({
         setUser: (state, action)=>{
             state.user = action.payload
         },
+        setAvatars: (state, action)=>{
+            state.avatars = action.payload
+        },
     }
 })
 
-export const {setLoading, setUserFavorite, setUser} = userSlice.actions;
+export const {setLoading, setUserFavorite, setUser, setAvatars} = userSlice.actions;
 
 // méthode qui récupére les albums favoris de l'user
 export const fetchUserFavorite = (id) => async dispatch => {
@@ -48,6 +52,20 @@ export const fetchUser = (id) => async dispatch => {
     } catch (error) {
         console.log(`Erreur lors de la requête fetchUser: ${error}`);
         dispatch(setLoading(false));
+    }
+}
+
+//méthode pour retrieve les avatars
+export const fetchAvatars = () => async dispatch => {
+    try {
+        dispatch(setLoading(true));
+        const response = await axios.get(`${apiUrl}/avatars?page=1&isActive=true`);
+        dispatch(setAvatars(response.data['hydra:member']));
+        dispatch(setLoading(false));
+    } catch (error) {
+        console.log(`Erreur lors de la requête fetchAvatars: ${error}`);
+        dispatch(setLoading(false));
+        
     }
 }
 

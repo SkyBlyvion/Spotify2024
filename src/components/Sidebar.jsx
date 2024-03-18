@@ -16,7 +16,7 @@ const Sidebar = () => {
 
     // on recupere l'id de l'utilisateur
     const {userId, signOut} = useAuthContext();
-    console.log('userId', userId)
+    // console.log('userId', userId)
 
     // on recupere le hook de navigation
     const navigate = useNavigate();
