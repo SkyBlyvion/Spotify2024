@@ -31,6 +31,9 @@ const Sidebar = () => {
     <>
         {/* navbar pour la vue au dessus de 768px */}
         <div className='hidden md:flex flex-col w-[240px] py-10 px-4 bg-black'>
+            <div>
+                
+            </div>
             <Link to = '/'>
                 <img src={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
             </Link>
@@ -65,8 +68,23 @@ const Sidebar = () => {
         {/* left-0 pour le menu de droite et -left-full pour le menu de gauche */}
         <div className={`z-20 absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white_01 to-black backdrop-blur-lg p-6 md:hidden smooth-transition ${mobileMenu ? 'left-0' : '-left-full'}`}>
             <img src={imgLogo} alt='logo Spotify' className='w-full h-14 object-contain'/>
-                <NavLinks data={dataAlbumNav} marginTop={'mt-10'} handleClick={() => isMobileMenu(false)}/>
-                <NavLinks data={dataUserNav} marginTop={'mt-5'} handleClick={() => isMobileMenu(false)}/>
+            <NavLinks data={dataAlbumNav} marginTop={'mt-10'} handleClick={() => isMobileMenu(false)}/>
+            <NavLinks data={dataUserNav} marginTop={'mt-5'} handleClick={() => isMobileMenu(false)}/>
+
+             {/* ajout bouton deconnexion */}
+            <div className='mt-5'>
+                    <button onClick={()=>{
+                        const confirmLogout = window.confirm('Voulez-vous vous deconnecter ?');
+                        if(confirmLogout){
+                            handleLogout();
+                        }
+                    }}
+                    className='w-full flex p-3 items-center justify-start font-medium text-sm text-white hover:bg-green_06'
+                    >
+                        <FiLogOut className='w-6 h-6 mr-2'/>
+                        Se deconnecter
+                    </button>
+            </div>
         </div>
     </>
   )
