@@ -9,7 +9,10 @@ import DetailAlbum from '../../components/DetailAlbum'
 
 const Details = () => {
     const params = useParams();
+    
+    // on apelle le hook dispatch pour executer la methode du slice
     const dispatch = useDispatch();
+
     // on recupére le parametre id de l'url
     const id = params.id;
     useEffect(()=> {
