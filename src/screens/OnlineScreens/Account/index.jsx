@@ -44,7 +44,6 @@ const Account = () => {
                 <img src={imgPath} alt="avatar user" className='w-40 h-40 object-contain rounded-full'/>
                 <Link to={`/edit-avatar`} className='absolute bottom-0 right-0 border rounded-full p-2 cursor-pointer hover:bg-green_top'>
                     <BsFillPencilFill size={20} />
-
                 </Link>
             </div>
         </div>
@@ -52,7 +51,7 @@ const Account = () => {
             <p className='text-xl font-bold mt-5'>Pseudo: {user?.nickname ?? 'Pas de pseudo'}</p>
             <p className='text-xl font-bold mt-5'>Email: {user?.email ?? 'Pas d\'email'}</p>
             <p className='text-xl font-bold mt-5'>Password: ***************</p>
-            <Link to="#" className='absolute bottom-3 right-2 border rounded-full p-2 cursor-pointer hover:bg-green_top'>
+            <Link to="/edit-info" className='absolute bottom-3 right-2 border rounded-full p-2 cursor-pointer hover:bg-green_top'>
                 <BsFillPencilFill size={20} />
             </Link>
 

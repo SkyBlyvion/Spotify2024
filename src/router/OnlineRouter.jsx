@@ -10,6 +10,7 @@ import Details from "../screens/OnlineScreens/Details";
 import DetailArtist from "../components/DetailArtist";
 import Account from "../screens/OnlineScreens/Account";
 import AvatarList from "../screens/OnlineScreens/Account/AvatarList";
+import Editinfo from "../screens/OnlineScreens/Account/Editinfo";
 
 const OnlineRouter = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const OnlineRouter = createBrowserRouter([
             {
                 path: "/edit-avatar",
                 element: <AvatarList />
+            },
+            {
+                path: "/edit-info",
+                element: <Editinfo />
             }
         ]
     }
